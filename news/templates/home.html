@@ -8,14 +8,16 @@
 {% endblock %}
 {% block content %}
 <main>
-    {% for news in news %}
-    <div class="news-card">
-        <h2 class="news-title">{{ news.title }}</h2>
-        <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
-        {% if news.image %}
-        <img src="{% static news.image.url %}" alt="{{ news.title }}" class="news-image" />
-        {% endif %}
-    </div>
+    <div class="news-container">
+    {% for news_item in news_list %}
+        <a href="{% url 'news-details-page' news_item.id %}" class="news-link">
+            <div class="news-card">
+                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                <h2 class="news-title">{{ news_item.title }}</h2>
+                <span class="news-date">{{ news_item.created_at|date:"d/m/Y" }}</span>
+            </div>
+        </a>
     {% endfor %}
+  </div>
 </main>
 {% endblock %}

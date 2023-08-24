@@ -1,5 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from news.models import News
+
+
+def news_details(request, id):
+    news = get_object_or_404(News, id=id)
+    context = {'news': news}
+    return render(request, 'news_details.html', context)
 
 
 def home(request):

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Detalhes da Notícia</title>
+</head>
+<body>
+    <header class="header">
+        <ul class="header-links">
+            <li><a href="{% url 'home-page' %}">Home</a></li>
+        </ul>
+    </header>
+    
+    <h1 class="news-title">{{ news.title }}</h1>
+    
+    <p class="news-content">{{ news.content }}</p>
+    
+    <p class="news-categories">
+        {% for category in news.categories.all %}
+            <span class="news-categories">{{ category}}</span>
+        {% endfor %}
+    </p>
+    
+    <p class="news-author">
+        Author: <span class="news-author">{{ news.author }}</span>
+    </p>
+    
+    <p class="news-date">
+        Date: <span class="news-date-value">{{ news.created_at|date:"d/m/Y" }}</span>
+    </p>
+    
+    <img src="/static{{ news.image.url }}" alt="{{ news.title }}" class="news-image">
+</body>
+</html>
