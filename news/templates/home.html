@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block title %}
-    Página Inicial
-{% endblock %}
+{% load static %} 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %} 
+{% block title %}
+Página Inicial
 {% endblock %}
 {% block content %}
-<main>
-    <div class="news-container">
-    {% for news_item in news_list %}
-        <a href="{% url 'news-details-page' news_item.id %}" class="news-link">
-            <div class="news-card">
-                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
-                <h2 class="news-title">{{ news_item.title }}</h2>
-                <span class="news-date">{{ news_item.created_at|date:"d/m/Y" }}</span>
-            </div>
-        </a>
-    {% endfor %}
-  </div>
-</main>
+<h1>Notícias</h1>
+{% for news in news %}
+<div class="news">
+  <h2 class="news-title">{{ news.title }}</h2>
+  {% if news.image %}
+  <img
+    class="news-image"
+    src="{% static news.image.url %}"
+    alt="{{ news.title }}"
+  />
+  {% endif %}
+  <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
+</div>
+{% endfor %}
 {% endblock %}
