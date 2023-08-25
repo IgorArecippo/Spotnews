@@ -1,5 +1,5 @@
 from django.urls import path, include
-from news.views import home, news_details, categories_form
+from news.views import home, news_details, categories_form, news_form
 from rest_framework.routers import DefaultRouter
 from news_rest.views.categories_view import CategoryViewSet
 from news_rest.views.users_view import UserViewSet
@@ -16,4 +16,5 @@ urlpatterns = [
     path('news/<int:id>/', news_details, name='news-details-page'),
     path('categories/', categories_form, name='categories-form'),
     path('api/', include(router.urls)),
+    path('news/', news_form, name='news-form'),
 ]
